@@ -1,0 +1,100 @@
+aid: worldfirst
+name: WorldFirst
+review:
+  question: Does WorldFirst publish a public developer portal with downloadable OpenAPI specs?
+  answer: partial
+  date: '2026-07-24'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    WorldFirst (London-founded, Ant Group / Alipay-owned since 2019) runs a genuine,
+    API-native developer portal at https://developers.worldfirst.com (HTTP 200),
+    mirrored for China at https://developers.worldfirst.com.cn. It is built on Ant
+    Group's Antom-style documentation platform ("yuyan") and segments the surface
+    into three product families: the Enterprise Solution (World Account — customer
+    onboarding, account/beneficiary/statement management, foreign exchange, transfer,
+    payout, invoicing, virtual-card credit), the Pay Solution (Cashier Payment —
+    online checkout acceptance for overseas e-commerce merchants), and the WorldTrade
+    Solution (cross-border trade orders). A World Card multi-currency card product is
+    named in the platform overview. The API is RESTful, JSON, HTTPS-only, and POST-
+    oriented, with production hosts by region: open-sea.worldfirst.com (Singapore),
+    open-eu.worldfirst.com (Europe), and open-na.worldfirst.com (North America),
+    under the path /amsin/api/v1/{restfulPath}. NO downloadable OpenAPI/Swagger is
+    offered: probing /openapi.json and /swagger.json on the docs host returns the Ant
+    gateway error {"stat":"fail","msg":"RefererCheckFailed"}, and doc routes such as
+    /api-docs and /spec return the SPA HTML shell (Alipay yuyan renderer), not a spec.
+    Zero specs were harvested verbatim. Reference content is therefore documentation-
+    and-console only, gated behind partner onboarding plus the console's iMock/iTest
+    tooling. Home market is the United Kingdom; the book is global cross-border
+    e-commerce and trade.
+  developerPortal:
+    url: https://developers.worldfirst.com
+    httpStatus: 200
+    confirmed: true
+    platform: Ant Group Antom-style docs (yuyan renderer); mirror at developers.worldfirst.com.cn
+  downloadableSpecs:
+    openapiHarvested: false
+    specsCount: 0
+    note: |
+      developers.worldfirst.com/openapi.json and /swagger.json both return HTTP 200
+      with body {"stat":"fail","msg":"RefererCheckFailed"} (Ant gateway referer block);
+      /api-docs and /spec return the docs SPA HTML shell. No parseable OpenAPI/Swagger
+      document is publicly downloadable.
+  authModel:
+    scheme: Signed requests + OAuth 2.0
+    detail: |
+      Requests carry a Signature header using RSA256 or ECC224 (algorithm, keyVersion,
+      signature value), plus Client-Id, Request-Time (ISO 8601), Content-Type
+      application/json, and an Access-Token for OAuth-based/authorized calls.
+  webhooks:
+    present: true
+    note: |
+      Asynchronous notifications documented — payment notification in the Pay Solution
+      flow and a WorldFirst-initiated notifyTradeOrderCloseResult callback in the
+      WorldTrade Solution. No AsyncAPI document is published.
+  postman:
+    present: true
+    note: Getting-started docs reference making a first API call using Postman; no public workspace URL confirmed.
+  homeMarket: United Kingdom
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://open-sea.worldfirst.com/amsin/api/v1
+    documented: true
+  - protocol: REST
+    scheme: https
+    baseURL: https://open-eu.worldfirst.com/amsin/api/v1
+    documented: true
+  - protocol: REST
+    scheme: https
+    baseURL: https://open-na.worldfirst.com/amsin/api/v1
+    documented: true
+endpointsConfirmed:
+  - POST https://open-sea.worldfirst.com/amsin/api/v1/payments/inquiryQuotes
+  - createTradeOrder (WorldTrade Solution, partner-initiated)
+  - notifyTradeOrderCloseResult (WorldTrade Solution, WorldFirst-initiated callback)
+sources:
+  - url: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/home
+    type: Documentation
+    httpStatus: 200
+    note: Platform overview — Enterprise, Pay, and World Card solution families; signed requests.
+  - url: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
+    type: APIReference
+    httpStatus: 200
+    note: Lists Enterprise and Pay solution API categories; OAuth 2.0, HTTPS, JSON, RESTful.
+  - url: https://developers.worldfirst.com.cn/docs/alipay-worldfirst/worldfirst_enterprise_solution/api_overview
+    type: APIReference
+    httpStatus: 200
+    note: Regional base URLs (open-sea/open-eu/open-na), /amsin/api/v1 path, RSA256/ECC224 signing headers, capability list.
+  - url: https://developers.worldfirst.com/docs/alipay-worldfirst/worldtrade_solution/overview
+    type: Documentation
+    httpStatus: 200
+    note: WorldTrade Solution — inquiryQuotes, createTradeOrder, notifyTradeOrderCloseResult; SG test host open-sitprod-sg.alipay.com.
+  - url: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/getting_started
+    type: GettingStarted
+    httpStatus: 200
+    note: Pay Solution four-step payment flow with asynchronous payment notification; Postman-based first call.
+  - url: https://www.worldfirst.com/uk/api/
+    type: Website
+    httpStatus: 200
+    note: UK marketing page for International Payment API integration.

@@ -1,0 +1,127 @@
+aid: worldfirst
+url: https://raw.githubusercontent.com/api-evangelist/worldfirst/refs/heads/main/apis.yml
+name: WorldFirst
+kind: company
+description: >-
+  WorldFirst is a United Kingdom-founded cross-border payments and money-movement
+  company, headquartered in London and owned by Ant Group (Alipay) since 2019. It
+  gives online sellers, marketplaces, and SMEs a multi-currency World Account to
+  collect, hold, convert, and send money across borders, alongside a World Card
+  for multi-currency spending and marketplace/supplier payouts. Its home market is
+  the United Kingdom, but its book is global e-commerce and cross-border trade,
+  serving merchants selling on Amazon and other marketplaces. WorldFirst ships a
+  genuine, API-native developer platform at developers.worldfirst.com built on Ant
+  Group's Antom-style gateway (open-sea/open-eu/open-na hosts, /amsin/api/v1 paths):
+  a RESTful, JSON, HTTPS-only interface segmented into an Enterprise Solution
+  (account, beneficiary, FX, transfer, payout, invoicing, virtual-card credit),
+  a Pay Solution (Cashier Payment / online checkout acceptance for merchants), and
+  a WorldTrade Solution (cross-border trade orders). Requests are secured with
+  RSA256/ECC224 digital signatures plus OAuth 2.0 access tokens; asynchronous
+  notifications (webhooks) return payment and trade-order results. The public
+  reference is documentation-and-console only — the underlying OpenAPI/Swagger is
+  not offered as a downloadable spec (the gateway blocks anonymous spec fetches),
+  so integration is gated behind partner onboarding and the console's iMock/iTest
+  tooling.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- United Kingdom
+- Cross-Border
+- Money Transfer
+- Foreign Exchange
+- Payouts
+- Payment Gateway
+- E-commerce
+- Multi-Currency
+- Card Issuing
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: worldfirst:worldfirst-enterprise-solution-api
+  name: WorldFirst Enterprise Solution API
+  description: >-
+    The WorldFirst Enterprise Solution (World Account) API — a RESTful, JSON,
+    signed-request interface covering customer onboarding, account and beneficiary
+    management, statements, foreign exchange, transfer, payout, invoicing, and
+    virtual-card (VC) credit for globally based partners and customers. Requests
+    are signed with RSA256/ECC224 and carry an OAuth 2.0 Access-Token; no
+    downloadable OpenAPI is published.
+  humanURL: https://developers.worldfirst.com.cn/docs/alipay-worldfirst/worldfirst_enterprise_solution/api_overview
+  baseURL: https://open-sea.worldfirst.com/amsin/api/v1
+  tags:
+  - Enterprise
+  - World Account
+  - Foreign Exchange
+  - Payouts
+  - Cross-Border
+  properties:
+  - type: Documentation
+    url: https://developers.worldfirst.com.cn/docs/alipay-worldfirst/worldfirst_enterprise_solution/getting_started
+  - type: APIReference
+    url: https://developers.worldfirst.com.cn/docs/alipay-worldfirst/worldfirst_enterprise_solution/api_overview
+- aid: worldfirst:worldfirst-pay-solution-api
+  name: WorldFirst Pay Solution API
+  description: >-
+    The WorldFirst Pay Solution (Cashier Payment) API lets overseas e-commerce
+    merchants accept payments through a hosted checkout: create a payment order,
+    let the customer complete payment, inquire about payment status, and receive an
+    asynchronous payment notification (webhook). RESTful JSON over HTTPS with
+    RSA256/ECC224 signed requests; no downloadable OpenAPI is published.
+  humanURL: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/getting_started
+  baseURL: https://open-sea.worldfirst.com/amsin/api/v1
+  tags:
+  - Payment Acceptance
+  - Cashier Payment
+  - Checkout
+  - E-commerce
+  properties:
+  - type: Documentation
+    url: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/development_via_api
+  - type: APIReference
+    url: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/getting_started
+- aid: worldfirst:worldfirst-worldtrade-solution-api
+  name: WorldFirst WorldTrade Solution API
+  description: >-
+    The WorldTrade Solution API supports cross-border trade transactions between
+    partners and the WorldFirst platform — e.g. inquiryQuotes (FX quote lookup at
+    /amsin/api/v1/payments/inquiryQuotes), createTradeOrder to submit a trade order,
+    and a WorldFirst-initiated notifyTradeOrderCloseResult asynchronous callback.
+    RESTful JSON over HTTPS with RSA256/ECC224 signed requests; no downloadable
+    OpenAPI is published.
+  humanURL: https://developers.worldfirst.com/docs/alipay-worldfirst/worldtrade_solution/overview
+  baseURL: https://open-sea.worldfirst.com/amsin/api/v1
+  tags:
+  - Cross-Border
+  - Trade
+  - Foreign Exchange
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://developers.worldfirst.com/docs/alipay-worldfirst/worldtrade_solution/overview
+  - type: APIReference
+    url: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
+common:
+- type: Website
+  url: https://www.worldfirst.com/
+- type: DeveloperPortal
+  url: https://developers.worldfirst.com/
+- type: Documentation
+  url: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/home
+- type: APIReference
+  url: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
+- type: GettingStarted
+  url: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/getting_started
+- type: Pricing
+  url: https://www.worldfirst.com/uk/pricing/
+- type: Blog
+  url: https://www.worldfirst.com/uk/blog/
+- type: TermsOfService
+  url: https://www.worldfirst.com/uk/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://www.worldfirst.com/uk/privacy-policy/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/world-first
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
