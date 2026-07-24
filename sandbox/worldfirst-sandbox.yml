@@ -1,0 +1,34 @@
+generated: '2026-07-24'
+method: searched
+source: https://developers.worldfirst.com.cn/docs/alipay-worldfirst/overview/developer_center_user_manual
+note: >-
+  WorldFirst provides a full sandbox in the Developer Center. Integration approval
+  requires completing all test cases in sandbox before Go-Live. No published test
+  card numbers / magic values were found in the public docs (test data is issued per
+  partner inside the console) — none are fabricated here.
+environments:
+  separation: >-
+    Sandbox and production are separate environments, each with its own uploaded
+    public key (Key Management) and Client-Id. Partners must pass sandbox test cases
+    before production access is granted.
+  sandbox: "Developer Center sandbox environment"
+  production: "https://open-sea.worldfirst.com / open-eu / open-na"
+tooling:
+- name: Mock Rule execution
+  description: >-
+    In the Developer Center a partner selects a Mock Rule, clicks Execute / Start,
+    and the console simulates the API response for that scenario (the iMock-style
+    mock/test surface).
+- name: WorldFirst Public API (Postman collection)
+  description: >-
+    WorldFirst supplies a "WorldFirst Public API" Postman collection (sample script)
+    so partners can send signed requests and inspect responses from Postman. The
+    collection is obtained from WorldFirst Technical Support and imported into a
+    partner's own Postman workspace — it is not published as a public workspace URL.
+- name: Key Management
+  description: >-
+    Console section to generate/upload the RSA/ECC public key used to sign sandbox
+    and production requests.
+test_values:
+  documented_public: false
+  note: "Test credentials, Client-Ids and mock data are provisioned per partner inside the console; not published publicly."

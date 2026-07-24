@@ -1,0 +1,23 @@
+generated: '2026-07-24'
+method: searched
+source: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
+note: >-
+  WorldFirst versions its gateway in the URI path (/amsin/api/v1). No public status
+  page, SLA document, or dated changelog / deprecation policy was found on the
+  developer portal or marketing site (the platform is partner-onboarded). Absence is
+  recorded, not fabricated.
+versioning:
+  scheme: uri-path
+  current: v1
+  path: /amsin/api/v1
+  docs: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
+deprecation:
+  policy_url: null
+  sunset_header: false
+  documented: false
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+changelog:
+  documented: false

@@ -1,0 +1,35 @@
+generated: '2026-07-24'
+method: searched
+source: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
+note: >-
+  WorldFirst (Ant Group Antom-style gateway) does not use RFC 9457 problem+json.
+  Every response carries a "result" object with a resultCode / resultStatus /
+  resultCodeId / resultMsg envelope. resultStatus is a three-state contract:
+  S=success, F=failure, U=unknown (in-progress, must re-query). The codes below are
+  the standard Antom result-code registry; resultCode values and one live
+  resultCodeId (00000004 / PARAM_ILLEGAL) were verified against the gateway.
+format: custom-result-envelope
+envelope:
+  wrapper: result
+  fields:
+  - {field: resultStatus, values: [S, F, U], meaning: "S=success, F=fail, U=unknown/pending"}
+  - {field: resultCode, type: string, example: PARAM_ILLEGAL}
+  - {field: resultCodeId, type: string, example: '00000004'}
+  - {field: resultMsg, type: string, example: "illegal parameter"}
+result_status:
+- {status: S, meaning: Success, action: "Treat the business action as completed."}
+- {status: F, meaning: Failure, action: "Definitive failure; inspect resultCode and do not blindly retry."}
+- {status: U, meaning: Unknown / in-progress, action: "Re-query the inquiry endpoint; retry only after resolving to S or F."}
+problems:
+- {resultCode: SUCCESS, resultStatus: S, title: "Request succeeded"}
+- {resultCode: PARAM_ILLEGAL, resultStatus: F, resultCodeId: '00000004', title: "Illegal / missing parameter", remediation: "Fix the malformed or missing request parameter (verified live: 'client id not found')."}
+- {resultCode: PROCESS_FAIL, resultStatus: F, title: "General processing failure"}
+- {resultCode: SYSTEM_ERROR, resultStatus: U, title: "System error", remediation: "Transient; re-query via the inquiry endpoint before retrying."}
+- {resultCode: UNKNOWN_EXCEPTION, resultStatus: U, title: "Unknown exception", remediation: "Result indeterminate; reconcile via inquiry endpoint."}
+- {resultCode: ACCESS_DENIED, resultStatus: F, title: "Access denied", remediation: "Client-Id lacks permission for this API/product."}
+- {resultCode: INVALID_SIGNATURE, resultStatus: F, title: "Signature verification failed", remediation: "Recompute the RSA256/ECC224 signature; confirm the public key uploaded in Key Management matches the signing key and request-time is fresh."}
+- {resultCode: INVALID_CLIENT, resultStatus: F, title: "Invalid Client-Id", remediation: "Use a Client-Id provisioned in the Developer Center for the target environment."}
+- {resultCode: KEY_NOT_FOUND, resultStatus: F, title: "Signing key/keyVersion not found", remediation: "Upload the public key and reference the correct keyVersion in the Signature header."}
+- {resultCode: REQUEST_TRAFFIC_EXCEED_LIMIT, resultStatus: U, title: "Rate limit exceeded", remediation: "Back off and retry."}
+- {resultCode: ORDER_NOT_EXIST, resultStatus: F, title: "Referenced order does not exist", remediation: "Verify the partner-supplied reference id (e.g. paymentRequestId)."}
+- {resultCode: CURRENCY_NOT_SUPPORT, resultStatus: F, title: "Currency not supported"}

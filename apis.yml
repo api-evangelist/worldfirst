@@ -102,6 +102,8 @@ apis:
   - type: APIReference
     url: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
 common:
+- type: DomainSecurity
+  url: security/worldfirst-domain-security.yml
 - type: Website
   url: https://www.worldfirst.com/
 - type: DeveloperPortal
@@ -122,6 +124,28 @@ common:
   url: https://www.worldfirst.com/uk/privacy-policy/
 - type: LinkedIn
   url: https://www.linkedin.com/company/world-first
+- type: SignUp
+  url: https://portal.worldfirst.com/register?lang=en-GB&region=global
+- type: Login
+  url: https://portal.worldfirst.com/login?lang=en-GB&region=global
+- type: HelpCenter
+  url: https://www.worldfirst.com/help-center/
+- type: LLMsTxt
+  url: llms/worldfirst-llms.txt
+- type: Authentication
+  url: authentication/worldfirst-authentication.yml
+- type: Conventions
+  url: conventions/worldfirst-conventions.yml
+- type: ErrorCatalog
+  url: errors/worldfirst-problem-types.yml
+- type: Webhooks
+  url: asyncapi/worldfirst-webhooks.yml
+- type: Sandbox
+  url: sandbox/worldfirst-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/worldfirst-lifecycle.yml
+- type: Conformance
+  url: conformance/worldfirst-conformance.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

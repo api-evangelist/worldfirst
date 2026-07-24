@@ -1,0 +1,33 @@
+generated: '2026-07-24'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.worldfirst.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 22 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: developers.worldfirst.com.cn
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Feb 14 23:59:59 2027 GMT
+  hsts: false
+- host: open-sea.worldfirst.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Mar 14 23:59:59 2027 GMT
+  hsts: false
+domains:
+- domain: worldfirst.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: worldfirst.com.cn
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

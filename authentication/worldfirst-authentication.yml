@@ -1,0 +1,46 @@
+generated: '2026-07-24'
+method: searched
+source: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/getting_started
+docs: https://developers.worldfirst.com/docs/alipay-worldfirst/overview/apis
+note: >-
+  WorldFirst does not publish a downloadable OpenAPI, so this profile is captured
+  from the developer documentation rather than derived from a spec. The gateway is
+  Ant Group's Antom-style platform (open-sea/open-eu/open-na hosts, /amsin/api/v1
+  paths). Every request is authenticated with an asymmetric digital signature; an
+  OAuth 2.0 access token is additionally used on the Enterprise Solution.
+summary:
+  types: [signature, oauth2]
+  signature_algorithms: [RSA256, ECC224]
+  api_key_in: [header]
+  oauth2_flows: [clientCredentials]
+schemes:
+- name: RequestSignature
+  type: signature
+  scheme: RSA256
+  in: header
+  header: Signature
+  format: "algorithm=RSA256,keyVersion=1,signature=<base64(sign(content))>"
+  signed_content: "<HTTP-METHOD> <request-URI>\n<Client-Id>.<request-time>.<request-body>"
+  key_management: >-
+    Partner generates an RSA (or ECC) key pair and uploads the public key in the
+    Developer Center Key Management section (separately for sandbox and production).
+    WorldFirst signs its asynchronous notifications so the partner verifies them
+    with WorldFirst's public key.
+  required_headers:
+  - Client-Id        # merchant/partner identifier issued in the Developer Center
+  - Signature        # RSA256/ECC224 signature over the canonical request
+  - request-time     # request timestamp (replay protection)
+  - Content-Type     # application/json
+  sources: [docs: cashier_payment/getting_started]
+- name: OAuth2AccessToken
+  type: oauth2
+  scheme: bearer
+  description: >-
+    The Enterprise Solution (World Account) additionally carries an OAuth 2.0
+    Access-Token obtained through partner authorization; the Pay Solution (Cashier
+    Payment) is signature-only. Scopes are not published in the public docs.
+  sources: [docs: worldfirst_enterprise_solution/api_overview]
+alternatives:
+  ecc224: >-
+    ECC224 is supported as an alternative to RSA256 for the request signature; the
+    Signature header algorithm token changes accordingly (algorithm=ECC224,...).

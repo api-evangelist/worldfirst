@@ -1,0 +1,60 @@
+generated: '2026-07-24'
+method: searched
+source: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/getting_started
+note: >-
+  Cross-cutting request/response semantics for the WorldFirst (Ant Group Antom-style)
+  gateway, captured from the developer documentation. No downloadable OpenAPI is
+  published, so field-level shapes are documented, not derived.
+transport:
+  protocol: HTTPS only
+  method: POST
+  content_type: application/json
+  base_urls:
+  - https://open-sea.worldfirst.com/amsin/api/v1   # Sea / APAC
+  - https://open-eu.worldfirst.com/amsin/api/v1    # EU
+  - https://open-na.worldfirst.com/amsin/api/v1    # NA
+  path_style: "action-style POST endpoints under /amsin/api/v1/<domain>/<action>"
+authentication:
+  style: asymmetric-signature + oauth2
+  ref: authentication/worldfirst-authentication.yml
+  headers: [Client-Id, Signature, request-time, Content-Type]
+request_tracing:
+  request_time_header: request-time
+  note: >-
+    request-time is a mandatory signed header used for replay protection; it also
+    serves as a per-request timestamp for correlation. A partner-supplied reference
+    id (e.g. paymentRequestId / partnerTransactionId) identifies each business
+    request in inquiry and notification calls.
+idempotency:
+  supported: undocumented
+  mechanism: >-
+    No dedicated Idempotency-Key header is documented, and the public docs do not
+    describe a retry/idempotency contract. Order-creating requests carry a
+    partner-supplied reference id (e.g. paymentRequestId) and inquiry endpoints let
+    the partner reconcile before retrying, but the docs do not commit to reference-id
+    replay returning the existing resource. No Idempotency pointer is emitted.
+  header: null
+error_envelope:
+  shape: >-
+    Every response wraps a "result" object: result.resultCode, result.resultCodeId,
+    result.resultStatus (S=success, F=fail, U=unknown/pending), result.resultMsg.
+  example: '{"result":{"resultCode":"PARAM_ILLEGAL","resultCodeId":"00000004","resultMsg":"illegal parameter","resultStatus":"F"}}'
+  ref: errors/worldfirst-problem-types.yml
+  retry_semantics: >-
+    resultStatus U (unknown) is retryable and MUST be resolved by re-querying the
+    inquiry endpoint before retrying the action; F is a definitive failure; S is
+    success. This is the Antom-gateway three-state result contract.
+async_notifications:
+  supported: true
+  ref: asyncapi/worldfirst-webhooks.yml
+  note: >-
+    Payment and trade-order results are delivered asynchronously to a partner
+    notification URL and are signed by WorldFirst for verification.
+pagination:
+  documented: false
+versioning:
+  scheme: uri-path
+  current: v1
+  ref: lifecycle/worldfirst-lifecycle.yml
+rate_limit_signaling:
+  documented: false

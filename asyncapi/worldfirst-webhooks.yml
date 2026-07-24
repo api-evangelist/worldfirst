@@ -1,0 +1,34 @@
+generated: '2026-07-24'
+method: searched
+source: https://developers.worldfirst.com/docs/alipay-worldfirst/cashier_payment/development_via_api
+spec_type: Webhooks
+note: >-
+  WorldFirst does not publish an AsyncAPI document. It documents an asynchronous
+  server-to-partner notification (webhook) surface: after a customer completes a
+  payment or a trade order closes, WorldFirst POSTs a signed notification to the
+  partner's registered notification URL. Notifications are signed with WorldFirst's
+  key and MUST be verified by the partner (same RSA256/ECC224 signature model as
+  requests). The partner acknowledges receipt so WorldFirst stops retrying.
+delivery:
+  style: http-callback
+  method: POST
+  content_type: application/json
+  signature_header: Signature
+  verification: "Verify with WorldFirst's public key (algorithm=RSA256/ECC224)."
+  acknowledgement: "Return a success result envelope to stop notification retries."
+  retries: "WorldFirst retries the notification until acknowledged."
+events:
+- name: notifyPayment
+  solution: Pay Solution (Cashier Payment)
+  trigger: A customer completes (or fails) a Cashier Payment order.
+  payload: "Payment result carrying the partner paymentRequestId and result envelope."
+- name: notifyTradeOrderCloseResult
+  solution: WorldTrade Solution
+  trigger: A cross-border trade order reaches a close/settled result.
+  payload: "Trade-order close result with the partner order reference."
+- name: notifyTransfer
+  solution: Enterprise Solution (World Account)
+  trigger: A payout / transfer reaches a terminal state.
+  payload: "Transfer/payout result with the partner reference id."
+  confidence: medium
+  note: "Enterprise payouts are asynchronous; exact callback name is gated behind partner onboarding."

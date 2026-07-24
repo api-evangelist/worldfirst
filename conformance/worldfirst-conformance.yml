@@ -1,0 +1,36 @@
+generated: '2026-07-24'
+method: derived
+source: >-
+  developer docs (developers.worldfirst.com) + authentication/worldfirst-authentication.yml
+  + errors/worldfirst-problem-types.yml
+note: >-
+  Cross-cutting standards conformance for the WorldFirst gateway, derived from the
+  documented auth, transport, and error contracts (no downloadable OpenAPI). WorldFirst
+  is an Ant Group company and FCA-authorised e-money/payments institution, but no
+  self-service certification/compliance page (SOC 2 / ISO 27001 / PCI DSS report) was
+  found on the developer or marketing surface, so no Compliance pointer is emitted.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: "Docs state OAuth 2.0 Access-Token on the Enterprise Solution."
+- id: oidc
+  conforms: false
+  evidence: "No OpenID Connect discovery document (openid-configuration returns 404)."
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: "Errors use a custom result{resultCode,resultStatus,resultCodeId,resultMsg} envelope, not application/problem+json."
+- id: https-only
+  conforms: true
+  evidence: "Docs mandate HTTPS-only access."
+- id: message-signing
+  conforms: true
+  evidence: "RSA256/ECC224 asymmetric request+notification signatures (algorithm=RSA256,keyVersion=1,signature=...)."
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: "/.well-known/security.txt returns 404 on developer and marketing hosts."
+- id: pagination-standard
+  conforms: false
+  evidence: "No pagination convention documented (action-style POST endpoints)."
+- id: psd2
+  conforms: false
+  evidence: "Not an open-banking/PSD2 dedicated interface; a cross-border payments gateway."
