@@ -36,7 +36,7 @@ tags:
 - Card Issuing
 created: '2026-07-24'
 modified: '2026-07-24'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: worldfirst:worldfirst-enterprise-solution-api
   name: WorldFirst Enterprise Solution API
