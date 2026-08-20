@@ -31,6 +31,17 @@ tags:
 - Foreign Exchange
 - Payouts
 - Payment Gateway
+- E-Commerce
+- Multi-Currency
+- Card Issuing
+tags_raw:
+- Payments
+- United Kingdom
+- Cross-Border
+- Money Transfer
+- Foreign Exchange
+- Payouts
+- Payment Gateway
 - E-commerce
 - Multi-Currency
 - Card Issuing
@@ -74,6 +85,11 @@ apis:
   - Payment Acceptance
   - Cashier Payment
   - Checkout
+  - E-Commerce
+  tags_raw:
+  - Payment Acceptance
+  - Cashier Payment
+  - Checkout
   - E-commerce
   properties:
   - type: Documentation
@@ -92,6 +108,11 @@ apis:
   humanURL: https://developers.worldfirst.com/docs/alipay-worldfirst/worldtrade_solution/overview
   baseURL: https://open-sea.worldfirst.com/amsin/api/v1
   tags:
+  - Cross-Border
+  - Trade
+  - Foreign Exchange
+  - Webhook
+  tags_raw:
   - Cross-Border
   - Trade
   - Foreign Exchange
