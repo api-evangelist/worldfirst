@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/worldfirst/integrations
+- https://n8n.io/integrations/worldfirst/
+- https://composio.dev/toolkits/worldfirst
+- https://monid.ai/tools/worldfirst
+checked:
+- https://composio.dev/toolkits/worldfirst
+- https://monid.ai/tools/worldfirst
+- https://n8n.io/integrations/worldfirst/
+- https://zapier.com/apps/worldfirst/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
