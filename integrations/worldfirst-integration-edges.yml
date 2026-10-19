@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/worldfirst/integrations
 - https://n8n.io/integrations/worldfirst/
@@ -7,10 +7,48 @@ source:
 - https://monid.ai/tools/worldfirst
 checked:
 - https://composio.dev/toolkits/worldfirst
+- https://eservices.mas.gov.sg/fid
 - https://monid.ai/tools/worldfirst
 - https://n8n.io/integrations/worldfirst/
+- https://www.bi.go.id/id/layanan/informasi-perizinan/sistem-pembayaran/default.aspx
+- https://www.bnm.gov.my/list-of-regulatees
+- https://www.ojk.go.id/id/kanal/iknb/data-dan-statistik/direktori/fintech/Default.aspx
 - https://zapier.com/apps/worldfirst/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: MAS Financial Institutions Directory
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://eservices.mas.gov.sg/fid
+  category: open finance (Singapore)
+  contract_reference:
+    register: MAS Financial Institutions Directory
+    spec_file: null
+    standard: MAS licensing (Banking Act / Payment Services Act, Singapore)
+    role: licensed-participant
+    registrations:
+    - registered_name: WORLD FIRST ASIA PTE. LTD.
+      licences:
+      - Major Payment Institution
+      matched_domain: worldfirst.com
+      matched_by: domain
+      evidence: https://eservices.mas.gov.sg/fid/institution/detail/200370-WORLD-FIRST-ASIA-PTE-LTD
+      register_id: 200370-WORLD-FIRST-ASIA-PTE-LTD
+    - registered_name: WORLDFIRST (SINGAPORE) MERCHANT SERVICES PTE. LTD.
+      licences:
+      - Major Payment Institution
+      matched_domain: worldfirst.com
+      matched_by: domain
+      evidence: https://eservices.mas.gov.sg/fid/institution/detail/219756-WORLDFIRST-SINGAPORE-MERCHANT-SERVICES-PTE-LTD
+      register_id: 219756-WORLDFIRST-SINGAPORE-MERCHANT-SERVICES-PTE-LTD
+    signal_note: 'participation only: a regulator licence; no API conformance is published by this register'
+    detected_by: sweep-gulf-asean-open-finance.py
+    detected: '2026-10-18'
+  detected_by: sweep-gulf-asean-open-finance.py
+  first_seen: '2026-10-18'
 templates: []
