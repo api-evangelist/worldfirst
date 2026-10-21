@@ -14,6 +14,9 @@ checked:
 - https://www.bnm.gov.my/list-of-regulatees
 - https://www.ojk.go.id/id/kanal/iknb/data-dan-statistik/direktori/fintech/Default.aspx
 - https://zapier.com/apps/worldfirst/integrations
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 summary: null
 marketplace_apps: []
 edges:
@@ -51,4 +54,23 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-gulf-asean-open-finance.py
   first_seen: '2026-10-18'
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.a36dd439-f845-4ef2-b567-e982d0f9a51f
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - WorldFirst
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
+  badges:
+  - emerald
+  publisher_verified:
+  - emerald
 templates: []

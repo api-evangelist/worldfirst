@@ -37,3 +37,15 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: worldfirst-amazon-selling-partner-appstore
+  label: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_name: Amazon Selling Partner Appstore
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.a36dd439-f845-4ef2-b567-e982d0f9a51f
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
